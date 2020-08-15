@@ -117,34 +117,14 @@ public class CustomerRepoImpl implements CustomerRepo {
 		return 1;
 	}
 
-	@Transactional
-	public int addCart(List<Cart> carts, int customerId) {
-		Customer customer = em.find(Customer.class, customerId);
-		customer.setCart(carts);
-
-		for (Cart c : carts) {
-			c.setCustomer(customer);
-		}
-
-		em.merge(customer);
-		return 1;
+	public int addCart(List<Cart> cart, int customerId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	@Transactional
 	public int addItem(List<Items> items, int cartId, int productId) {
-		Cart cart = em.find(Cart.class, cartId);
-		Product product = em.find(Product.class, productId);
-		cart.setItem(items);
-		
-
-		for (Items i : items) {
-			i.setCart(cart);
-			i.setProduct(product);
-			product.setItem(i);
-		}
-
-		em.merge(cart);
-		return 1;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

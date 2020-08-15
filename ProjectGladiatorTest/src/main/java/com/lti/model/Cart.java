@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +35,10 @@ public class Cart {
 	@JoinColumn(name="customerId")
 	private Customer customer;
 	
-	@OneToMany(mappedBy="Cart", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="cart", cascade=CascadeType.ALL)
 	private List<Items> item;
 	
-	@OneToOne(mappedBy="Cart", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="cart", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private Order order;
 
 	public int getCartId() {

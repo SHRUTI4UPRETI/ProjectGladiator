@@ -3,6 +3,7 @@ package com.lti.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,14 +13,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 @Entity
 @Table(name="tbl_product1")
 public class Product {
 
 	@Id
-	@SequenceGenerator(name = "seq_product1", initialValue = 10001, allocationSize = 1)
+	@SequenceGenerator(name = "seq_product1", initialValue = 20200, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product1")
 	private int productId;
 	
@@ -46,7 +45,114 @@ public class Product {
 	@JoinColumn(name="retailerId")
 	private Retailer retailer;
 	
-	@OneToOne(mappedBy="Product", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="product", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private Items item;
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductBrandName() {
+		return productBrandName;
+	}
+
+	public void setProductBrandName(String productBrandName) {
+		this.productBrandName = productBrandName;
+	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public String getProductSubCategory() {
+		return productSubCategory;
+	}
+
+	public void setProductSubCategory(String productSubCategory) {
+		this.productSubCategory = productSubCategory;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public String getProductImagePath() {
+		return productImagePath;
+	}
+
+	public void setProductImagePath(String productImagePath) {
+		this.productImagePath = productImagePath;
+	}
+
+	public boolean isProductApproved() {
+		return isProductApproved;
+	}
+
+	public void setProductApproved(boolean isProductApproved) {
+		this.isProductApproved = isProductApproved;
+	}
+
+	public Retailer getRetailer() {
+		return retailer;
+	}
+
+	public void setRetailer(Retailer retailer) {
+		this.retailer = retailer;
+	}
+
+	public Items getItem() {
+		return item;
+	}
+
+	public void setItem(Items item) {
+		this.item = item;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productBrandName="
+				+ productBrandName + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity
+				+ ", productCategory=" + productCategory + ", productSubCategory=" + productSubCategory
+				+ ", productDescription=" + productDescription + ", productImagePath=" + productImagePath
+				+ ", isProductApproved=" + isProductApproved + "]";
+	}
+	
+	
 	
 }

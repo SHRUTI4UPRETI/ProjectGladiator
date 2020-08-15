@@ -2,6 +2,7 @@ package com.lti.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "tbl_items1")
+@Table(name = "tbl_item1")
 public class Items {
 	
 	@Id
@@ -27,11 +28,11 @@ public class Items {
 	@Column
 	private int itemTotalPrice;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="productId")
 	private Product product;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="cartId")
 	private Cart cart;
 	

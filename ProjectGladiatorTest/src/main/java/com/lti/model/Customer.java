@@ -19,23 +19,32 @@ import org.springframework.stereotype.Component;
 public class Customer {
 
 	@Id
-	@SequenceGenerator(name = "seq_customer1", initialValue = 20001, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_customer1")
+	@SequenceGenerator(name = "seq_customer1", initialValue = 10001, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_customer1")
 	private int customerId;
+	
 	@Column
 	private String customerName;
+	
 	@Column
 	private String customerEmail;
+	
 	@Column
 	private String customerPassword;
+	
 	@Column
 	private String customerAddress;
+	
 	@Column
 	private int customerMobile;
 	
-	@OneToMany(mappedBy="Customer", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="customer", cascade=CascadeType.ALL)
 	private List<Cart> cart;
 
+	
+	
+	
+	
 	public int getCustomerId() {
 		return customerId;
 	}

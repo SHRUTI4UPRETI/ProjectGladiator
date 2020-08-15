@@ -39,6 +39,54 @@ public class Cart {
 	
 	@OneToOne(mappedBy="Cart", cascade=CascadeType.ALL)
 	private Order order;
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public int getCartQuantity() {
+		return cartQuantity;
+	}
+
+	public void setCartQuantity(int cartQuantity) {
+		this.cartQuantity = cartQuantity;
+	}
+
+	public boolean isCartStatus() {
+		return cartStatus;
+	}
+
+	public void setCartStatus(boolean cartStatus) {
+		this.cartStatus = cartStatus;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<Items> getItem() {
+		return item;
+	}
+
+	public void setItem(List<Items> item) {
+		this.item = item;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 	 
 
 }

@@ -1,10 +1,7 @@
 package com.lti.test;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.lti.controller.CustomerController;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
+import com.lti.model.Items;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -25,6 +23,8 @@ public class CustomerTest {
 	Customer customer = new Customer();
 	Product product=new Product();
 	Retailer retailer=new Retailer();
+	Cart cart = new Cart();
+	Items item = new Items();
 
 	@Test
 	public void addNewCustomer() {
@@ -80,7 +80,7 @@ public class CustomerTest {
 	/*	retailer.setRetailerId(60003);
 		product.setRetailer(retailer);*/
 		
-		int id = controller.addNewProduct(products, 60007);
+		int id = controller.addNewProduct(products, 60001);
 		if(id>0)
 			System.out.println("Product added");
 		else
@@ -102,12 +102,38 @@ public class CustomerTest {
 	
 	@Test
 	public void searchProductById(){
-		System.out.println(controller.searchProductById(20214));
+		System.out.println(controller.searchProductById(20200));
 	}
 	
 	@Test
 	public void viewAllProducts(){
 		System.out.println(controller.viewAllProducts());
+	}
+	
+	@Test
+	public void addItem(){
+		
+		List<Items> items = new ArrayList<Items>();
+		item.setItemQuantity(2);
+		item.setItemTotalPrice(1000);
+		items.add(item);
+		int id = controller.addItem(items, 40000, 20200);
+		System.out.println("User items added with Id : " + id);
+		
+	}
+	
+	@Test
+	public void addCart(){
+		
+		List<Cart> carts = new ArrayList<Cart>();
+		
+		cart.setCartQuantity(5);
+		cart.setCartStatus(true);
+		carts.add(cart);
+		int id = controller.addCart(carts, 10001);
+		System.out.println("User cart added with Id : " + id);
+		
+		
 	}
 	
 }

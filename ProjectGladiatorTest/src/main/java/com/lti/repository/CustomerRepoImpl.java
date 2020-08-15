@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.model.Cart;
 import com.lti.model.Customer;
+import com.lti.model.Items;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -112,6 +114,36 @@ public class CustomerRepoImpl implements CustomerRepo {
 		}
 
 		Retailer r = em.merge(retailer);
+		return 1;
+	}
+
+	@Transactional
+	public int addCart(List<Cart> carts, int customerId) {
+		Customer customer = em.find(Customer.class, customerId);
+		customer.setCart(carts);
+
+		for (Cart c : carts) {
+			c.setCustomer(customer);
+		}
+
+		em.merge(customer);
+		return 1;
+	}
+
+	@Transactional
+	public int addItem(List<Items> items, int cartId, int productId) {
+		Cart cart = em.find(Cart.class, cartId);
+		Product product = em.find(Product.class, productId);
+		cart.setItem(items);
+		
+
+		for (Items i : items) {
+			i.setCart(cart);
+			i.setProduct(product);
+			product.setItem(i);
+		}
+
+		em.merge(cart);
 		return 1;
 	}
 

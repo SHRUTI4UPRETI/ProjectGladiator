@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lti.model.Cart;
 import com.lti.model.Customer;
+import com.lti.model.Items;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 import com.lti.repository.CustomerRepo;
-import com.lti.repository.CustomerRepoImpl;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -66,5 +67,12 @@ public class CustomerServiceImpl implements CustomerService {
 		return repo.addNewRetailer(retailer);
 	}
 
-	
+	public int addCart(List<Cart> cart, int customerId) {
+		return repo.addCart(cart, customerId);
+	}
+
+	public int addItem(List<Items> items, int cartId, int productId) {
+		return repo.addItem(items, cartId, productId);
+	}
+
 }

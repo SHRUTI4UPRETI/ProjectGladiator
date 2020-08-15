@@ -2,7 +2,9 @@ package com.lti.repository;
 
 import java.util.List;
 
+import com.lti.model.Cart;
 import com.lti.model.Customer;
+import com.lti.model.Items;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -21,6 +23,10 @@ public interface CustomerRepo {
 	Product searchProductById(int productId);
 	
 	public int addNewRetailer(Retailer retailer); 
+	
+	public int addCart(List<Cart> cart, int customerId );
+	
+	public int addItem(List<Items> items, int cartId, int productId);
 	
 	
 	

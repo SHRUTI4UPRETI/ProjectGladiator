@@ -1,9 +1,22 @@
 package com.lti.service;
 
+import java.util.List;
+
 import com.lti.model.Customer;
+import com.lti.model.Product;
+import com.lti.model.Retailer;
 
 public interface CustomerService {
 	public int addNewCustomer(Customer customer);
 	boolean updateCustomer(Customer customer);
-	boolean isValidCustomer(int customerId, String customerPassword);
+	boolean isValidCustomer(String customerEmail, String customerPassword);
+	
+	public int addNewProduct(List<Product> products, int retailerId);
+	boolean updateProduct(Product product);
+	boolean approveProduct(int productId);
+	boolean removeProduct(int productId);
+	List<Product> viewAllProducts();
+	Product searchProductById(int productId);
+	
+	public int addNewRetailer(Retailer retailer); 
 }

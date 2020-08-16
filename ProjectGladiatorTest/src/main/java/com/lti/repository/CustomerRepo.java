@@ -5,6 +5,7 @@ import java.util.List;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
 import com.lti.model.Items;
+import com.lti.model.Order;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -28,6 +29,7 @@ public interface CustomerRepo {
 	
 	public int addItem(List<Items> items, int cartId, int productId);
 	
-	
+	public int placeOrderforCustomer(Order order,int cartId);
+	public List<Items> displayProductByUserId(int customerId);
 	
 }

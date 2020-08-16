@@ -1,5 +1,6 @@
 package com.lti.test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import com.lti.controller.CustomerController;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
 import com.lti.model.Items;
+import com.lti.model.Order;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -25,18 +27,21 @@ public class CustomerTest {
 	Retailer retailer=new Retailer();
 	Cart cart = new Cart();
 	Items item = new Items();
+	Order order=new Order();
 
 	@Test
 	public void addNewCustomer() {
 
-		customer.setCustomerName("Emma");
-		customer.setCustomerPassword("emma123");
-		customer.setCustomerEmail("emma@xyz");
+		customer.setCustomerName("jai");
+		customer.setCustomerPassword("jai123");
+		customer.setCustomerEmail("jai@xyz");
 		customer.setCustomerMobile(811145674);
-		customer.setCustomerAddress("St..");
+		customer.setCustomerAddress("raj.");
 
 		int id = controller.addCustomer(customer);
+		
 		System.out.println("User added with Id : " + id);
+		
 	}
 
 	@Test
@@ -64,11 +69,11 @@ public class CustomerTest {
 	@Test
 	public void addNewProduct() {
 
-		product.setProductName("Black Shirt");
+		product.setProductName("Red Shirt");
 		product.setProductCategory("Men");
 		product.setProductSubCategory("Shirts");
 		product.setProductBrandName("Arrow");
-		product.setProductDescription("This is a Black shirt");
+		product.setProductDescription("This is a Red shirt");
 		product.setProductPrice(2000);
 		product.setProductQuantity(10);
 		product.setProductImagePath("/assets/abc.jpg");
@@ -102,7 +107,7 @@ public class CustomerTest {
 	
 	@Test
 	public void searchProductById(){
-		System.out.println(controller.searchProductById(20200));
+		System.out.println(controller.searchProductById(20201));
 	}
 	
 	@Test
@@ -117,7 +122,7 @@ public class CustomerTest {
 		item.setItemQuantity(2);
 		item.setItemTotalPrice(1000);
 		items.add(item);
-		int id = controller.addItem(items, 40000,20200);
+		int id = controller.addItem(items, 40003,20201);
 		System.out.println("User items added with Id : " + id);
 		
 	}
@@ -134,6 +139,20 @@ public class CustomerTest {
 		System.out.println("User cart added with Id : " + id);
 		
 		
+	}
+	
+	@Test
+	public void placeOrder(){
+		
+		order.setOrderTotalPrice(8000);
+		order.setOrderDate(LocalDate.now());
+		
+		System.out.println(controller.placeOrderforCustomer(order, 40004));
+	}
+	
+	@Test
+	public void displayProductByUserId(){
+		System.out.println(controller.displayProductByUserId(10003));
 	}
 	
 }

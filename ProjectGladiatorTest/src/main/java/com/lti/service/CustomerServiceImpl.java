@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
 import com.lti.model.Items;
+import com.lti.model.Order;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 import com.lti.repository.CustomerRepo;
@@ -73,6 +74,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public int addItem(List<Items> items, int cartId, int productId) {
 		return repo.addItem(items, cartId, productId);
+	}
+	
+	public int placeOrderforCustomer(Order order, int cartId){
+		return repo.placeOrderforCustomer(order, cartId);
+	}
+
+	public List<Items> displayProductByUserId(int customerId) {
+		return repo.displayProductByUserId(customerId);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
 import com.lti.model.Items;
+import com.lti.model.Order;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 import com.lti.service.CustomerService;
@@ -63,5 +64,13 @@ public class CustomerController {
 
 	public int addItem(List<Items> items, int cartId, int productId) {
 		return serv.addItem(items, cartId, productId);
+	}
+	
+	public int placeOrderforCustomer(Order order, int cartId){
+		return serv.placeOrderforCustomer(order, cartId);
+	}
+	
+	public List<Items> displayProductByUserId(int customerId){
+		return serv.displayProductByUserId(customerId);
 	}
 }

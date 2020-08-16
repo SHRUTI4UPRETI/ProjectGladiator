@@ -33,4 +33,43 @@ public class Order {
 	@JoinColumn(name="cartId")
 	private Cart cart;
 
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public double getOrderTotalPrice() {
+		return orderTotalPrice;
+	}
+
+	public void setOrderTotalPrice(double orderTotalPrice) {
+		this.orderTotalPrice = orderTotalPrice;
+	}
+
+	public LocalDate getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderTotalPrice=" + orderTotalPrice + ", orderDate=" + orderDate + "]";
+	}
+
+	
+	
 }

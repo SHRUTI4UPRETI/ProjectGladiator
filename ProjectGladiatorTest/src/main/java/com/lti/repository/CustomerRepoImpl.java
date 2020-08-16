@@ -1,5 +1,6 @@
 package com.lti.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.lti.model.Cart;
 import com.lti.model.Customer;
 import com.lti.model.Items;
+import com.lti.model.Order;
 import com.lti.model.Product;
 import com.lti.model.Retailer;
 
@@ -25,8 +27,17 @@ public class CustomerRepoImpl implements CustomerRepo {
 	@Transactional
 	public int addNewCustomer(Customer customer) {
 		Customer customer1 = em.merge(customer);
+
 		int uId = customer1.getCustomerId();
+		List<Cart> carts = new ArrayList<Cart>();
+
+		Cart cart = new Cart();
+		cart.setCartQuantity(0);
+		cart.setCartStatus(true);
+		carts.add(cart);
+		addCart(carts, uId);
 		return uId;
+
 	}
 
 	@Transactional
@@ -129,26 +140,43 @@ public class CustomerRepoImpl implements CustomerRepo {
 		return 1;
 	}
 
-	/*
-	 * public void setProduct(int productId){
-	 * 
-	 * }
-	 */
-
 	@Transactional
 	public int addItem(List<Items> items, int cartId, int productId) {
 		Cart cart = em.find(Cart.class, cartId);
 		Product product = em.find(Product.class, productId);
 
-		for (Items i : items) {
-			i.setCart(cart);
-			i.setProduct(product);
+		/* for (Items i : items) { */
 
-			product.setItem(i);
-		}
+		Items item = items.get(0);
+		item.setProduct(product);
+
+		// product.setItem(item);
+		item.setCart(cart);
+		// }
 
 		cart.setItem(items);
 		em.merge(cart);
 		return 1;
 	}
+
+	@Transactional
+	public int placeOrderforCustomer(Order order, int cartId) {
+		Cart cart = em.find(Cart.class, cartId);
+
+		// cart.setOrder(order);
+		order.setCart(cart);
+
+		Order od = em.merge(order);
+		
+		return od.getOrderId();
+	}
+	
+	public List<Items> displayProductByUserId(int customerId) {
+		String sql = "select ti from Items ti where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
+
+		TypedQuery<Items> query = em.createQuery(sql, Items.class);
+		query.setParameter("cid", customerId);
+		List<Items> resultList = query.getResultList();
+		return resultList;
+	}	
 }

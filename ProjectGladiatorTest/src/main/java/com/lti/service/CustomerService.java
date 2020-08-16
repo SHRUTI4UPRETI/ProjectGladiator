@@ -29,7 +29,7 @@ public interface CustomerService {
 
 	public int addNewRetailer(Retailer retailer);
 
-	public int addCart(List<Cart> cart, int customerId);
+	public int addCart(List<Cart> carts, int customerId);
 
 	public int addItem(List<Items> items, int cartId, int productId);
 }

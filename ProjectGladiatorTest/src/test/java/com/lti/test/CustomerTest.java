@@ -117,7 +117,7 @@ public class CustomerTest {
 		item.setItemQuantity(2);
 		item.setItemTotalPrice(1000);
 		items.add(item);
-		int id = controller.addItem(items, 40000, 20200);
+		int id = controller.addItem(items, 40000,20200);
 		System.out.println("User items added with Id : " + id);
 		
 	}

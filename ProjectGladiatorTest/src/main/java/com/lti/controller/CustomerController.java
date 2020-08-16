@@ -57,8 +57,8 @@ public class CustomerController {
 		return serv.addNewRetailer(retailer);
 	}
 
-	public int addCart(List<Cart> cart, int customerId) {
-		return serv.addCart(cart, customerId);
+	public int addCart(List<Cart> carts, int customerId) {
+		return serv.addCart(carts, customerId);
 	}
 
 	public int addItem(List<Items> items, int cartId, int productId) {

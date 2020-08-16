@@ -83,15 +83,14 @@ public class CustomerRepoImpl implements CustomerRepo {
 		Query qry = em.createQuery(sql);
 
 		List<Product> products = qry.getResultList();
-		
+
 		return products;
 	}
 
-	
 	public Product searchProductById(int productId) {
-		
-		Product product=em.find(Product.class, productId);
-		
+
+		Product product = em.find(Product.class, productId);
+
 		return product;
 	}
 
@@ -117,7 +116,8 @@ public class CustomerRepoImpl implements CustomerRepo {
 		return 1;
 	}
 
-	public int addCart(List<Cart> cart, int customerId) {
+	@Transactional
+	public int addCart(List<Cart> carts, int customerId) {
 		Customer customer = em.find(Customer.class, customerId);
 		customer.setCart(carts);
 
@@ -129,21 +129,26 @@ public class CustomerRepoImpl implements CustomerRepo {
 		return 1;
 	}
 
+	/*
+	 * public void setProduct(int productId){
+	 * 
+	 * }
+	 */
+
+	@Transactional
 	public int addItem(List<Items> items, int cartId, int productId) {
 		Cart cart = em.find(Cart.class, cartId);
 		Product product = em.find(Product.class, productId);
-		cart.setItem(items);
-		
 
 		for (Items i : items) {
 			i.setCart(cart);
 			i.setProduct(product);
+
 			product.setItem(i);
 		}
 
+		cart.setItem(items);
 		em.merge(cart);
 		return 1;
 	}
-	}
-
 }

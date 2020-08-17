@@ -32,11 +32,11 @@ public class CustomerTest {
 	@Test
 	public void addNewCustomer() {
 
-		customer.setCustomerName("jai");
-		customer.setCustomerPassword("jai123");
-		customer.setCustomerEmail("jai@xyz");
-		customer.setCustomerMobile(811145674);
-		customer.setCustomerAddress("raj.");
+		customer.setCustomerName("shruti");
+		customer.setCustomerPassword("shruti123");
+		customer.setCustomerEmail("shruti@xyz");
+		customer.setCustomerMobile(987445674);
+		customer.setCustomerAddress("moon.");
 
 		int id = controller.addCustomer(customer);
 		
@@ -119,10 +119,10 @@ public class CustomerTest {
 	public void addItem(){
 		
 		List<Items> items = new ArrayList<Items>();
-		item.setItemQuantity(2);
-		item.setItemTotalPrice(1000);
+		item.setItemQuantity(10);
+		item.setItemTotalPrice(10000);
 		items.add(item);
-		int id = controller.addItem(items, 40003,20201);
+		int id = controller.addItem(items, 40005,20200);
 		System.out.println("User items added with Id : " + id);
 		
 	}

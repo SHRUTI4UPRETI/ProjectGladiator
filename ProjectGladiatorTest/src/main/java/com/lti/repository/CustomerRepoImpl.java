@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.stereotype.Repository;
 
 import com.lti.model.Cart;
@@ -37,7 +38,6 @@ public class CustomerRepoImpl implements CustomerRepo {
 		carts.add(cart);
 		addCart(carts, uId);
 		return uId;
-
 	}
 
 	@Transactional
@@ -158,22 +158,34 @@ public class CustomerRepoImpl implements CustomerRepo {
 		em.merge(cart);
 		return 1;
 	}
-
+	
+	public int setCartStatusInactive(int cartId){
+		Cart cart=em.find(Cart.class, cartId);
+		
+		String sql="update Cart c set c.cartStatus=false where c.cartId=:id";
+		
+		return 1;
+	}
+	
 	@Transactional
 	public int placeOrderforCustomer(Order order, int cartId) {
 		Cart cart = em.find(Cart.class, cartId);
-
+		
 		// cart.setOrder(order);
 		order.setCart(cart);
-
+		
 		Order od = em.merge(order);
+		
+		
 		
 		return od.getOrderId();
 	}
 	
 	public List<Items> displayProductByUserId(int customerId) {
-		String sql = "select ti from Items ti where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
-
+		//String sql = "select ti from Items ti where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
+		
+		String sql = "select ti, ti.product from Items ti join ti.product p on ti.product.productId=20202 where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
+		
 		TypedQuery<Items> query = em.createQuery(sql, Items.class);
 		query.setParameter("cid", customerId);
 		List<Items> resultList = query.getResultList();

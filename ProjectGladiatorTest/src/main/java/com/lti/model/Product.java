@@ -41,11 +41,11 @@ public class Product {
 	@Column
 	private boolean isProductApproved;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="retailerId")
 	private Retailer retailer;
 	
-	@OneToOne(mappedBy="product", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(mappedBy="product", cascade=CascadeType.ALL)
 	private Items item;
 
 	public int getProductId() {

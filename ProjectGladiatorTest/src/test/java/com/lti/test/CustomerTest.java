@@ -32,11 +32,11 @@ public class CustomerTest {
 	@Test
 	public void addNewCustomer() {
 
-		customer.setCustomerName("shruti");
+		customer.setCustomerName("Shruti");
 		customer.setCustomerPassword("shruti123");
 		customer.setCustomerEmail("shruti@xyz");
-		customer.setCustomerMobile(987445674);
-		customer.setCustomerAddress("moon.");
+		customer.setCustomerMobile(948745674);
+		customer.setCustomerAddress("shrutiHome");
 
 		int id = controller.addCustomer(customer);
 		
@@ -69,14 +69,14 @@ public class CustomerTest {
 	@Test
 	public void addNewProduct() {
 
-		product.setProductName("Red Shirt");
-		product.setProductCategory("Men");
-		product.setProductSubCategory("Shirts");
-		product.setProductBrandName("Arrow");
-		product.setProductDescription("This is a Red shirt");
+		product.setProductName("Blue Trimmer");
+		product.setProductCategory("Essentials");
+		product.setProductSubCategory("Trimmer");
+		product.setProductBrandName("Philips");
+		product.setProductDescription("This is a Blue Trimmer");
 		product.setProductPrice(2000);
 		product.setProductQuantity(10);
-		product.setProductImagePath("/assets/abc.jpg");
+		product.setProductImagePath("/assets/xyz.jpg");
 		product.setProductApproved(true);
 		
 		List<Product> products=new ArrayList<Product>();
@@ -85,7 +85,7 @@ public class CustomerTest {
 	/*	retailer.setRetailerId(60003);
 		product.setRetailer(retailer);*/
 		
-		int id = controller.addNewProduct(products, 60001);
+		int id = controller.addNewProduct(products, 60003);
 		if(id>0)
 			System.out.println("Product added");
 		else
@@ -107,7 +107,7 @@ public class CustomerTest {
 	
 	@Test
 	public void searchProductById(){
-		System.out.println(controller.searchProductById(20201));
+		System.out.println(controller.searchProductById(20204));
 	}
 	
 	@Test
@@ -122,7 +122,7 @@ public class CustomerTest {
 		item.setItemQuantity(10);
 		item.setItemTotalPrice(10000);
 		items.add(item);
-		int id = controller.addItem(items, 40005,20200);
+		int id = controller.addItem(items, 40007,20205);
 		System.out.println("User items added with Id : " + id);
 		
 	}
@@ -147,12 +147,12 @@ public class CustomerTest {
 		order.setOrderTotalPrice(8000);
 		order.setOrderDate(LocalDate.now());
 		
-		System.out.println(controller.placeOrderforCustomer(order, 40004));
+		System.out.println(controller.placeOrderforCustomer(order, 40007));
 	}
 	
 	@Test
 	public void displayProductByUserId(){
-		System.out.println(controller.displayProductByUserId(10003));
+		System.out.println(controller.displayProductByUserId(10006));
 	}
 	
 }

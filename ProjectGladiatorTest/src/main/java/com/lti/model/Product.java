@@ -45,7 +45,7 @@ public class Product {
 	@JoinColumn(name="retailerId")
 	private Retailer retailer;
 	
-	@OneToOne(mappedBy="product", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="product", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Items item;
 
 	public int getProductId() {

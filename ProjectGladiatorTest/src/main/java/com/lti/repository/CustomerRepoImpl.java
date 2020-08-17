@@ -182,9 +182,9 @@ public class CustomerRepoImpl implements CustomerRepo {
 	}
 	
 	public List<Items> displayProductByUserId(int customerId) {
-		//String sql = "select ti from Items ti where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
+		String sql = "select ti from Items ti where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
 		
-		String sql = "select ti, ti.product from Items ti join ti.product p on ti.product.productId=20202 where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
+		// sql = "select ti, ti.product from Items ti join ti.product p on ti.product.productId=20202 where ti.cart.cartId=(select tc.cartId from Cart tc where tc.customer.customerId=:cid)";
 		
 		TypedQuery<Items> query = em.createQuery(sql, Items.class);
 		query.setParameter("cid", customerId);
